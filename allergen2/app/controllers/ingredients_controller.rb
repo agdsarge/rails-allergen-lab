@@ -4,7 +4,7 @@ class IngredientsController < ApplicationController
 
 
     def index
-
+        @ingredients = Ingredient.all
     end
 
     def show
@@ -16,7 +16,8 @@ class IngredientsController < ApplicationController
     end
 
     def create
-
+        ing = Ingredient.create(ingredient_params(:name))
+        redirect_to ingredient_path(ing)
     end
 
     def edit
@@ -29,7 +30,8 @@ class IngredientsController < ApplicationController
     end
 
     def destroy
-
+        @ingredient.destroy
+        redirect_to ingredients_path
     end
 
     private

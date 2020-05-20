@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 
     def index
-
+        @users = User.all
     end
 
     def show
@@ -16,7 +16,8 @@ class UsersController < ApplicationController
     end
 
     def create
-
+        user = User.create(user_params(:name))
+        redirect_to user_path(user)
     end
 
     def edit
@@ -29,7 +30,8 @@ class UsersController < ApplicationController
     end
 
     def destroy
-
+        @user.destroy
+        redirect_to users_path
     end
 
     private

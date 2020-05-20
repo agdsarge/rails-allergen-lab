@@ -1,0 +1,11 @@
+<h2><%= @ingredient.name %></h2>
+
+<p>There are <%= @ingredient.users.count %> users allergic to me. </p>
+
+<ol>
+<% @ingredient.recipes.each do |r| %>
+    <li><%= link_to r.name, recipe_path(r) %></li>
+<% end %>
+</ol>
+
+<%= link_to "Back to Ingredients", ingredients_path %>

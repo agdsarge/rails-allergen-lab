@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
     before_action :recipe_instance, only: [:show, :edit, :update, :destroy]
 
     def index
-
+        @recipes = Recipe.all
     end
 
     def show
@@ -11,11 +11,13 @@ class RecipesController < ApplicationController
     end
 
     def new
-
+        @recipe = Recipe.new
+        
     end
 
     def create
-
+        recipe = Recipe.create(recipe_params(:name, :user_id))
+        redirect_to recipe_path(recipe)
     end
 
     def edit
