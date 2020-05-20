@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def show
-
+        
     end
 
     def new
@@ -16,8 +16,19 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create(user_params(:name))
-        redirect_to user_path(user)
+        @user = User.new(user_params(:name))
+        if @user.valid?
+            @user.save
+            params[:user][:ingredient_ids].each do |ing|
+                if !ing.empty?
+                    UserIngredient.find_or_create_by(user_id: @user.id, ingredient_id: ing)
+                end
+            end
+            redirect_to user_path(@user)
+        else 
+            render :new
+        end
+        
     end
 
     def edit
@@ -25,7 +36,14 @@ class UsersController < ApplicationController
     end
 
     def update
+        @user.update(user_params(:name))
+        params[:user][:ingredient_ids].each do |ing|
+            if !ing.empty?
+                UserIngredient.find_or_create_by(user_id: @user.id, ingredient_id: ing)
+            end
+        end
 
+        redirect_to user_path(@user)
 
     end
 

@@ -1,0 +1,8 @@
+<% if new_object.errors %>
+    <ul>
+        <% new_object.errors.full_messages.each do |mes| %>
+            <li class='error'> <%= mes %> </li>
+            <% end %>
+    </ul>
+
+<% end %>

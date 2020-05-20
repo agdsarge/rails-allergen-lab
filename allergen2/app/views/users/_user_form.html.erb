@@ -1,5 +1,15 @@
 <%= form_for(@user) do |f| %>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name %> 
+    <br>
+    <br>
+    <%= f.collection_check_boxes(:ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+        <span>
+            <%= b.check_box %>
+            <%= b.label %>
+        </span>
+    <% end %>    
+    <br>
+    <br>
     <%= f.submit %>
 <% end %>

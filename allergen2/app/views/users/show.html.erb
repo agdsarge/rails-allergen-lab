@@ -6,8 +6,16 @@
     <% end %>
 </ol>
 
+<h4> Medical Information: </h4>
+<!--- Put in iterable later to render allergies -->
+<% @user.ingredients.each do |ing|%>
+    <p> <%= ing.name %> </p>
+<% end %>
+
+
 <%= form_tag user_path(@user), method: "delete" do %>
     <%= submit_tag "Delete"%>
 <% end %>
 
+<%= link_to "Edit user", edit_user_path(@user) %> <br>
 <%= link_to "Back to the User index", users_path %>
