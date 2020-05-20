@@ -1,0 +1,27 @@
+
+
+[Ingredient]-<[join]>-[Recipe]>-[User]
+through joins, M2M I,R
+
+Ingredient Model
+    :name
+    :number of persons allergic to it
+
+Recipe|Ingredient join
+    :recipe_id
+    :ingredient_id
+
+Recipe
+    :name
+    :user_id
+
+User
+    :name
+
+User|Ingredient join
+    :ingredient_id
+    :user_id
+
+#######
+People | Allergens
+a person has many Allergens
