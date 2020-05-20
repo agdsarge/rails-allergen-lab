@@ -4,7 +4,7 @@ class IngredientsController < ApplicationController
 
 
     def index
-        @ingredients = Ingredient.all
+        @ingredients = Ingredient.all.sort {|a, b| b.users.length <=> a.users.length}
     end
 
     def show

@@ -1,7 +1,9 @@
 <h2><%= @ingredient.name %></h2>
 
-<p>There are <%= @ingredient.users.count %> users allergic to me. </p>
+<p>There are <%= @ingredient.users.count %> user(s) allergic to me. </p>
 
+<h5> recipe list </h5>
+<p> I am used in the following recipes </p>
 <ol>
 <% @ingredient.recipes.each do |r| %>
     <li><%= link_to r.name, recipe_path(r) %></li>

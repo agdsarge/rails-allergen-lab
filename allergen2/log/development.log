@@ -2114,3 +2114,2055 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 47ms (Views: 45.2ms | ActiveRecord: 0.2ms | Allocations: 5006)
 
 
+Started GET "/" for ::1 at 2020-05-20 16:41:24 -0400
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/davis/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/davis/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 39.8ms | Allocations: 315)
+Completed 200 OK in 250ms (Views: 100.0ms | ActiveRecord: 0.0ms | Allocations: 1889)
+
+
+Started GET "/users" for ::1 at 2020-05-20 16:42:19 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (12.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/index.html.erb within layouts/application (Duration: 33.2ms | Allocations: 4007)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 504ms (Views: 379.8ms | ActiveRecord: 14.3ms | Allocations: 37275)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:42:22 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (61.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.5ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 244.4ms | Allocations: 13467)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 299ms (Views: 198.8ms | ActiveRecord: 64.3ms | Allocations: 18802)
+
+
+Started GET "/users/6/edit" for ::1 at 2020-05-20 16:42:24 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (10.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/users/_user_form.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ingredients"."id" FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/_user_form.html.erb:8
+  Rendered users/_user_form.html.erb (Duration: 183.0ms | Allocations: 8216)
+  Rendered users/edit.html.erb within layouts/application (Duration: 186.5ms | Allocations: 8522)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 267ms (Views: 246.9ms | ActiveRecord: 12.2ms | Allocations: 13525)
+
+
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:42:29 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"gpwfLegCZwyrvTNlyC56C25963AuzHWKV9Fbjep/hbffD06gRlJuXEA3vwzHy3bzJqUxG6jyGutXqnkaaZ3BFw==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "3", "4", "5"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+Completed 500 Internal Server Error in 120ms (ActiveRecord: 2.2ms | Allocations: 4657)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/users_controller.rb:40:in `update'
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:43:19 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"t+OAZTLsHyf9KSaHTrVUw22Je1gqG7NR4JUhXCISY4OOsZk7Om7HT7rHZfxQE70/gmZBDJOXnr//vqK6DBlu0w==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "3", "4", "5"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 1.2ms | Allocations: 10059)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/users_controller.rb:41:in `update'
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:43:58 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"t+OAZTLsHyf9KSaHTrVUw22Je1gqG7NR4JUhXCISY4OOsZk7Om7HT7rHZfxQE70/gmZBDJOXnr//vqK6DBlu0w==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "3", "4", "5"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 1.2ms | Allocations: 9960)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/controllers/users_controller.rb:41:in `update'
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:44:23 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"t+OAZTLsHyf9KSaHTrVUw22Je1gqG7NR4JUhXCISY4OOsZk7Om7HT7rHZfxQE70/gmZBDJOXnr//vqK6DBlu0w==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "3", "4", "5"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUserIngredient Load (0.4ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE (user_id = '6')[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Load (6.6ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Create (23.7ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 3], ["created_at", "2020-05-20 20:44:24.255090"], ["updated_at", "2020-05-20 20:44:24.255090"]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 4], ["created_at", "2020-05-20 20:44:24.302022"], ["updated_at", "2020-05-20 20:44:24.302022"]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 5], ["created_at", "2020-05-20 20:44:24.481390"], ["updated_at", "2020-05-20 20:44:24.481390"]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 624ms (ActiveRecord: 46.3ms | Allocations: 50006)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:44:24 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.6ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 48.3ms | Allocations: 7015)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 77ms (Views: 70.7ms | ActiveRecord: 1.5ms | Allocations: 15390)
+
+
+Started GET "/users" for ::1 at 2020-05-20 16:44:28 -0400
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 755)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 22ms (Views: 19.0ms | ActiveRecord: 0.4ms | Allocations: 5069)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:44:30 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 8.3ms | Allocations: 1906)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 18.6ms | ActiveRecord: 1.8ms | Allocations: 6750)
+
+
+Started GET "/users/6/edit" for ::1 at 2020-05-20 16:44:31 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+  Rendering users/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (1.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/users/_user_form.html.erb:6
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ingredients"."id" FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/_user_form.html.erb:8
+  Rendered users/_user_form.html.erb (Duration: 10.4ms | Allocations: 2941)
+  Rendered users/edit.html.erb within layouts/application (Duration: 10.7ms | Allocations: 3006)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 17.0ms | ActiveRecord: 2.4ms | Allocations: 7849)
+
+
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:44:34 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"+bthBeIl3FMFGpfP7nD5BOOdMWxKSX8hNW/yQs1/BuKkKDCITHXVA+6QG6bhlfX8q0XrB8x3EEA1FNDVTp1CQg==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "2", "3", "4", "5"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUserIngredient Load (0.3ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE (user_id = '6')[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Destroy (0.5ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 10]]
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Destroy (0.5ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 11]]
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Destroy (4.1ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 12]]
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 2], ["created_at", "2020-05-20 20:44:34.832972"], ["updated_at", "2020-05-20 20:44:34.832972"]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 3], ["created_at", "2020-05-20 20:44:34.846505"], ["updated_at", "2020-05-20 20:44:34.846505"]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Load (0.1ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 4], ["created_at", "2020-05-20 20:44:34.859939"], ["updated_at", "2020-05-20 20:44:34.859939"]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Load (0.3ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[36mUserIngredient Create (0.9ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 5], ["created_at", "2020-05-20 20:44:34.879857"], ["updated_at", "2020-05-20 20:44:34.879857"]]
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:44:in `block in update'
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 111ms (ActiveRecord: 23.9ms | Allocations: 41208)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:44:34 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 9.3ms | Allocations: 1920)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 27.5ms | ActiveRecord: 1.2ms | Allocations: 6772)
+
+
+Started GET "/users" for ::1 at 2020-05-20 16:44:40 -0400
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 740)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 18.9ms | ActiveRecord: 1.1ms | Allocations: 5049)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:44:43 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 8.9ms | Allocations: 1920)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 19.0ms | ActiveRecord: 1.2ms | Allocations: 6766)
+
+
+Started GET "/users/6/edit" for ::1 at 2020-05-20 16:44:57 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+  Rendering users/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/users/_user_form.html.erb:6
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ingredients"."id" FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/_user_form.html.erb:8
+  Rendered users/_user_form.html.erb (Duration: 11.2ms | Allocations: 2838)
+  Rendered users/edit.html.erb within layouts/application (Duration: 11.6ms | Allocations: 2903)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 27.7ms | ActiveRecord: 1.2ms | Allocations: 7747)
+
+
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:45:01 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"4wCsyNtyyd+SlzrQcGTu6zxAAmb4DIhPryZNV9fTC8W+k/1FdSLAj3kdtrl/geITdJjYDX4y5y6vXW/AVDFPZQ==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>[""]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE (user_id = '6')[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Destroy (1.1ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 13]]
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Destroy (0.5ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 14]]
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Destroy (0.4ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 15]]
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[36mUserIngredient Destroy (0.3ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 16]]
+  ↳ app/controllers/users_controller.rb:41:in `update'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:41:in `update'
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 39ms (ActiveRecord: 9.4ms | Allocations: 12197)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:45:01 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:64:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1867)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 75ms (Views: 70.2ms | ActiveRecord: 1.0ms | Allocations: 6713)
+
+
+Started GET "/users/6/edit" for ::1 at 2020-05-20 16:45:20 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (1.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/users/_user_form.html.erb:6
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ingredients"."id" FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/_user_form.html.erb:8
+  Rendered users/_user_form.html.erb (Duration: 97.7ms | Allocations: 11218)
+  Rendered users/edit.html.erb within layouts/application (Duration: 98.8ms | Allocations: 11283)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 163ms (Views: 132.8ms | ActiveRecord: 4.3ms | Allocations: 21137)
+
+
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:45:22 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"JtWRIb5KoMTR7IksbVK3XzquqzKHEEXf4K0km0zdsI97RsCsEBqplDpmBUVit7uncnZxWQEuKr7g1gYMzz/0Lw==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "4"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUserIngredient Load (0.3ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE (user_id = '6')[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Load (0.4ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Create (0.7ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 4], ["created_at", "2020-05-20 20:45:22.863168"], ["updated_at", "2020-05-20 20:45:22.863168"]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 43ms (ActiveRecord: 4.7ms | Allocations: 14252)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:45:22 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.7ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 17.1ms | Allocations: 4679)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 30.3ms | ActiveRecord: 1.7ms | Allocations: 9422)
+
+
+Started GET "/users/6/edit" for ::1 at 2020-05-20 16:45:25 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/users/_user_form.html.erb:6
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ingredients"."id" FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/_user_form.html.erb:8
+  Rendered users/_user_form.html.erb (Duration: 11.5ms | Allocations: 2831)
+  Rendered users/edit.html.erb within layouts/application (Duration: 12.1ms | Allocations: 2896)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 48ms (Views: 41.5ms | ActiveRecord: 1.6ms | Allocations: 7737)
+
+
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:45:29 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"etnwS1/fyFufW+TEwRq6pXZcjbF3C81l5X0AbwHN/eonSqHG8Y/BC3TRaK3O/7ZdPoRX2vE1ogTlBiL4gi+5Sg==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "1", "2", "3", "4", "5"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE (user_id = '6')[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Destroy (0.6ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 17]]
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Load (0.3ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 1], ["created_at", "2020-05-20 20:45:29.957822"], ["updated_at", "2020-05-20 20:45:29.957822"]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Create (0.7ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 2], ["created_at", "2020-05-20 20:45:29.981953"], ["updated_at", "2020-05-20 20:45:29.981953"]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Create (4.1ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 3], ["created_at", "2020-05-20 20:45:30.141334"], ["updated_at", "2020-05-20 20:45:30.141334"]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Load (8.7ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 4], ["created_at", "2020-05-20 20:45:30.254375"], ["updated_at", "2020-05-20 20:45:30.254375"]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Create (3.2ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 5], ["created_at", "2020-05-20 20:45:30.314892"], ["updated_at", "2020-05-20 20:45:30.314892"]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (3.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 416ms (ActiveRecord: 38.9ms | Allocations: 56774)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:45:30 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.9ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 9.8ms | Allocations: 1933)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 24.3ms | ActiveRecord: 1.3ms | Allocations: 6776)
+
+
+Started GET "/users/6/edit" for ::1 at 2020-05-20 16:45:31 -0400
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.9ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/users/_user_form.html.erb:6
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ingredients"."id" FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/_user_form.html.erb:8
+  Rendered users/_user_form.html.erb (Duration: 13.2ms | Allocations: 2840)
+  Rendered users/edit.html.erb within layouts/application (Duration: 13.8ms | Allocations: 2905)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 26.3ms | ActiveRecord: 1.5ms | Allocations: 7753)
+
+
+Started PATCH "/users/6" for ::1 at 2020-05-20 16:45:36 -0400
+Processing by UsersController#update as HTML
+  Parameters: {"authenticity_token"=>"xqClT0sl9XZvnpzYzZu0PncoO14N8X8+/QaxrLer1++bM/TC5XX8JoQUELHCfrjGP/DhNYvPEF/9fZM7NEmTTw==", "user"=>{"name"=>"Davis Sargeant", "ingredient_ids"=>["", "4"]}, "commit"=>"Update User", "id"=>"6"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "Davis Sargeant"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:39:in `update'
+  [1m[36mUserIngredient Load (0.8ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE (user_id = '6')[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Destroy (0.8ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 18]]
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Destroy (0.5ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 19]]
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Destroy (0.8ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 20]]
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Destroy (0.8ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 21]]
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Destroy (0.8ms)[0m  [1m[31mDELETE FROM "user_ingredients" WHERE "user_ingredients"."id" = ?[0m  [["id", 22]]
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:40:in `update'
+  [1m[36mUserIngredient Load (0.2ms)[0m  [1m[34mSELECT "user_ingredients".* FROM "user_ingredients" WHERE "user_ingredients"."user_id" = ? AND "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["user_id", 6], ["ingredient_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[36mUserIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "user_ingredients" ("user_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["ingredient_id", 4], ["created_at", "2020-05-20 20:45:36.498050"], ["updated_at", "2020-05-20 20:45:36.498050"]]
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:43:in `block in update'
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 85ms (ActiveRecord: 20.1ms | Allocations: 19695)
+
+
+Started GET "/users/6" for ::1 at 2020-05-20 16:45:36 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:63:in `user_instance'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:4
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "user_ingredients" ON "ingredients"."id" = "user_ingredients"."ingredient_id" WHERE "user_ingredients"."user_id" = ?[0m  [["user_id", 6]]
+  ↳ app/views/users/show.html.erb:11
+  Rendered users/show.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1880)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 90ms (Views: 79.3ms | ActiveRecord: 0.6ms | Allocations: 18066)
+
+
+Started GET "/recipes" for ::1 at 2020-05-20 16:46:09 -0400
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:3
+  Rendered recipes/index.html.erb within layouts/application (Duration: 14.6ms | Allocations: 3915)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 26.2ms | ActiveRecord: 0.8ms | Allocations: 8801)
+
+
+Started GET "/recipes/new" for ::1 at 2020-05-20 16:46:11 -0400
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/recipes/_recipe_form.html.erb:4
+  Rendered recipes/_recipe_form.html.erb (Duration: 6.7ms | Allocations: 1750)
+  Rendered recipes/new.html.erb within layouts/application (Duration: 8.3ms | Allocations: 2050)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 15.7ms | ActiveRecord: 0.2ms | Allocations: 6502)
+
+
+Started POST "/recipes" for ::1 at 2020-05-20 16:46:21 -0400
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"V1GGv3p7UYdw0glck86cP7ej4EVJ1UFdEwomBYwbUzlPznQsrXx0feu1DaGP+olBSbIERXAWHONenMcsLo7+og==", "recipe"=>{"name"=>"toast", "user_id"=>"6"}, "commit"=>"Create Recipe"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "toast"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (21.0ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "toast"], ["user_id", 6], ["created_at", "2020-05-20 20:46:21.076372"], ["updated_at", "2020-05-20 20:46:21.076372"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[35m (92.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+Redirected to http://localhost:3000/recipes/3
+Completed 302 Found in 134ms (ActiveRecord: 114.1ms | Allocations: 5919)
+
+
+Started GET "/recipes/3" for ::1 at 2020-05-20 16:46:21 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:43:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 73)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 42ms (Views: 38.1ms | ActiveRecord: 0.3ms | Allocations: 9530)
+
+
+Started GET "/recipes/3" for ::1 at 2020-05-20 16:47:47 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:43:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  Rendered recipes/show.html.erb within layouts/application (Duration: 211.5ms | Allocations: 76663)
+Completed 500 Internal Server Error in 218ms (ActiveRecord: 0.4ms | Allocations: 78452)
+
+
+  
+ActionView::Template::Error (undefined method `by' for #<#<Class:0x00007feb21350ae8>:0x00007feb22a430e8>):
+    1: <h2> Recipe show page </h2>
+    2: 
+    3: <%= @recipe.name was addred to the app by @recipe.user %>
+  
+app/views/recipes/show.html.erb:3
+Started GET "/recipes/3" for ::1 at 2020-05-20 16:48:11 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:43:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1007)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.2ms | Allocations: 2796)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h2> Recipe show page </h2>
+
+<%= "#{@recipe.name} was addred to the app by #{@recipe.user} %>
+
+):
+1:    <h2> Recipe show page </h2>
+2:    
+3:    <%= "#{@recipe.name} was addred to the app by #{@recipe.user} %>
+  
+app/views/recipes/show.html.erb:6: unterminated string meets end of file
+app/views/recipes/show.html.erb:6: syntax error, unexpected end-of-input, expecting ')'
+app/views/recipes/show.html.erb:6: unterminated string meets end of file
+app/views/recipes/show.html.erb:6: syntax error, unexpected end-of-input, expecting ')'
+app/views/recipes/show.html.erb:6: unterminated string meets end of file
+app/views/recipes/show.html.erb:6: syntax error, unexpected end-of-input, expecting ')'
+app/views/recipes/show.html.erb:6: unterminated string meets end of file
+app/views/recipes/show.html.erb:6: syntax error, unexpected end-of-input, expecting ')'
+app/views/recipes/show.html.erb:6: unterminated string meets end of file
+app/views/recipes/show.html.erb:6: syntax error, unexpected end-of-input, expecting ')'
+app/views/recipes/show.html.erb:6: unterminated string meets end of file
+app/views/recipes/show.html.erb:6: syntax error, unexpected end-of-input, expecting ')'
+Started GET "/recipes/3" for ::1 at 2020-05-20 16:48:16 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:43:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  Rendered recipes/show.html.erb within layouts/application (Duration: 2.8ms | Allocations: 841)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 27.6ms | ActiveRecord: 0.4ms | Allocations: 6616)
+
+
+Started GET "/recipes/3" for ::1 at 2020-05-20 16:48:22 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:43:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  Rendered recipes/show.html.erb within layouts/application (Duration: 2.9ms | Allocations: 841)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 20.8ms | ActiveRecord: 0.5ms | Allocations: 6618)
+
+
+Started GET "/recipes/3" for ::1 at 2020-05-20 16:48:43 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:43:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  Rendered recipes/show.html.erb within layouts/application (Duration: 3.6ms | Allocations: 843)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 17.2ms | ActiveRecord: 0.5ms | Allocations: 6617)
+
+
+Started GET "/recipes/new" for ::1 at 2020-05-20 16:50:12 -0400
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/recipes/_recipe_form.html.erb:4
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/recipes/_recipe_form.html.erb:5
+  Rendered recipes/_recipe_form.html.erb (Duration: 135.0ms | Allocations: 9193)
+  Rendered recipes/new.html.erb within layouts/application (Duration: 136.6ms | Allocations: 9495)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 156ms (Views: 147.6ms | ActiveRecord: 1.0ms | Allocations: 14645)
+
+
+Started POST "/recipes" for ::1 at 2020-05-20 16:50:26 -0400
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"IyCKdHhJkmWD3pHBdHovTFM+27sg2352/d2+jxetzwIacpMqcMtKDcQw0rpq3MawvNHh75lXU5ji9j1pOabCUg==", "recipe"=>{"name"=>"roast chicken", "user_id"=>"5", "ingredient_ids"=>["", "1"]}, "commit"=>"Create Recipe"}
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "roast chicken"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[36mRecipe Create (0.8ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "roast chicken"], ["user_id", 5], ["created_at", "2020-05-20 20:50:26.911897"], ["updated_at", "2020-05-20 20:50:26.911897"]]
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:19:in `create'
+Redirected to http://localhost:3000/recipes/4
+Completed 302 Found in 20ms (ActiveRecord: 3.9ms | Allocations: 5013)
+
+
+Started GET "/recipes/4" for ::1 at 2020-05-20 16:50:26 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:43:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  Rendered recipes/show.html.erb within layouts/application (Duration: 3.5ms | Allocations: 843)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 26.0ms | ActiveRecord: 0.4ms | Allocations: 5833)
+
+
+Started POST "/recipes" for ::1 at 2020-05-20 16:55:26 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"IyCKdHhJkmWD3pHBdHovTFM+27sg2352/d2+jxetzwIacpMqcMtKDcQw0rpq3MawvNHh75lXU5ji9j1pOabCUg==", "recipe"=>{"name"=>"PBJ", "user_id"=>"1", "ingredient_ids"=>["", "4"]}, "commit"=>"Create Recipe"}
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:20:in `create'
+  [1m[36mRecipe Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "PBJ"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:20:in `create'
+  [1m[36mCACHE Recipe Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "PBJ"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[36mRecipe Create (12.2ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "PBJ"], ["user_id", 1], ["created_at", "2020-05-20 20:55:26.891844"], ["updated_at", "2020-05-20 20:55:26.891844"]]
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[36mRecipeIngredient Load (0.2ms)[0m  [1m[34mSELECT "recipe_ingredients".* FROM "recipe_ingredients" WHERE "recipe_ingredients"."recipe_id" = ? AND "recipe_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["recipe_id", 5], ["ingredient_id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipeIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "recipe_ingredients" ("recipe_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["recipe_id", 5], ["ingredient_id", 4], ["created_at", "2020-05-20 20:55:27.018554"], ["updated_at", "2020-05-20 20:55:27.018554"]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (4.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+Completed 500 Internal Server Error in 1153ms (ActiveRecord: 25.2ms | Allocations: 144671)
+
+
+  
+NameError (undefined local variable or method `recipe' for #<RecipesController:0x00007feb22a73860>
+Did you mean?  @recipe):
+  
+app/controllers/recipes_controller.rb:27:in `create'
+Started GET "/recipes" for ::1 at 2020-05-20 16:55:39 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:3
+  Rendered recipes/index.html.erb within layouts/application (Duration: 28.2ms | Allocations: 4511)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 144ms (Views: 45.0ms | ActiveRecord: 1.3ms | Allocations: 11415)
+
+
+Started GET "/recipes/5" for ::1 at 2020-05-20 16:55:41 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:54:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  Rendered recipes/show.html.erb within layouts/application (Duration: 21.7ms | Allocations: 5977)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 35.8ms | ActiveRecord: 1.6ms | Allocations: 10985)
+
+
+Started GET "/recipes/new" for ::1 at 2020-05-20 16:55:47 -0400
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/recipes/_recipe_form.html.erb:4
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/recipes/_recipe_form.html.erb:5
+  Rendered recipes/_recipe_form.html.erb (Duration: 27.7ms | Allocations: 11646)
+  Rendered recipes/new.html.erb within layouts/application (Duration: 30.0ms | Allocations: 11943)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 49ms (Views: 39.8ms | ActiveRecord: 2.0ms | Allocations: 16299)
+
+
+Started POST "/recipes" for ::1 at 2020-05-20 16:55:58 -0400
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"JjIeNLofLr294iAp0yWsznBmt2Lit62nI28KQqPBMbs+reynbRgLRyaFJNTPEbmwjndTYtt08Blu+etrAVScIA==", "recipe"=>{"name"=>"chicken soup", "user_id"=>"5", "ingredient_ids"=>["", "1"]}, "commit"=>"Create Recipe"}
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:20:in `create'
+  [1m[36mRecipe Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "chicken soup"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:20:in `create'
+  [1m[36mCACHE Recipe Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "chicken soup"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[36mRecipe Create (0.7ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "chicken soup"], ["user_id", 5], ["created_at", "2020-05-20 20:55:58.794453"], ["updated_at", "2020-05-20 20:55:58.794453"]]
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[36mRecipeIngredient Load (0.3ms)[0m  [1m[34mSELECT "recipe_ingredients".* FROM "recipe_ingredients" WHERE "recipe_ingredients"."recipe_id" = ? AND "recipe_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["recipe_id", 6], ["ingredient_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipeIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "recipe_ingredients" ("recipe_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["recipe_id", 6], ["ingredient_id", 1], ["created_at", "2020-05-20 20:55:58.820433"], ["updated_at", "2020-05-20 20:55:58.820433"]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+Redirected to http://localhost:3000/recipes/6
+Completed 302 Found in 50ms (ActiveRecord: 7.7ms | Allocations: 15260)
+
+
+Started GET "/recipes/6" for ::1 at 2020-05-20 16:55:58 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:54:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  Rendered recipes/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 743)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12ms (Views: 10.3ms | ActiveRecord: 0.3ms | Allocations: 5591)
+
+
+Started GET "/recipes/6" for ::1 at 2020-05-20 16:57:19 -0400
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:54:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/views/recipes/show.html.erb:6
+  Rendered recipes/show.html.erb within layouts/application (Duration: 6.7ms | Allocations: 2137)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 125ms (Views: 119.7ms | ActiveRecord: 0.8ms | Allocations: 7907)
+
+
+Started GET "/ingredients" for ::1 at 2020-05-20 16:57:36 -0400
+Processing by IngredientsController#index as HTML
+  Rendering ingredients/index.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/ingredients/index.html.erb:3
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 983)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 15ms (Views: 13.4ms | ActiveRecord: 0.2ms | Allocations: 5877)
+
+
+Started GET "/ingredients/new" for ::1 at 2020-05-20 16:57:38 -0400
+Processing by IngredientsController#new as HTML
+  Rendering ingredients/new.html.erb within layouts/application
+  Rendered ingredients/_ingredient_form.html.erb (Duration: 5.1ms | Allocations: 771)
+  Rendered ingredients/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1069)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 21.4ms | ActiveRecord: 0.0ms | Allocations: 5518)
+
+
+Started POST "/ingredients" for ::1 at 2020-05-20 16:57:41 -0400
+Processing by IngredientsController#create as HTML
+  Parameters: {"authenticity_token"=>"8EokI6MQAnA0EQSLyhXo83jHJOPDn1wT83muq5sfZA7ug3+F/erFlp2wojTi0yKf16/GedjUNlkQscZzhNaN+w==", "ingredient"=>{"name"=>"chicken"}, "commit"=>"Create Ingredient"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/ingredients_controller.rb:19:in `create'
+  [1m[36mIngredient Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "ingredients" WHERE LOWER("ingredients"."name") = LOWER(?) LIMIT ?[0m  [["name", "chicken"], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:19:in `create'
+  [1m[36mIngredient Create (0.6ms)[0m  [1m[32mINSERT INTO "ingredients" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "chicken"], ["created_at", "2020-05-20 20:57:41.455975"], ["updated_at", "2020-05-20 20:57:41.455975"]]
+  ↳ app/controllers/ingredients_controller.rb:19:in `create'
+  [1m[35m (6.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/ingredients_controller.rb:19:in `create'
+Redirected to http://localhost:3000/ingredients/6
+Completed 302 Found in 19ms (ActiveRecord: 8.6ms | Allocations: 4138)
+
+
+Started GET "/ingredients/6" for ::1 at 2020-05-20 16:57:41 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:44:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 6]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 6]]
+  ↳ app/views/ingredients/show.html.erb:6
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 14.5ms | Allocations: 5791)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 30ms (Views: 25.1ms | ActiveRecord: 1.4ms | Allocations: 10778)
+
+
+Started GET "/ingredients" for ::1 at 2020-05-20 16:57:44 -0400
+Processing by IngredientsController#index as HTML
+  Rendering ingredients/index.html.erb within layouts/application
+  [1m[36mIngredient Load (0.5ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/ingredients/index.html.erb:3
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 854)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 22.8ms | ActiveRecord: 0.5ms | Allocations: 5165)
+
+
+Started GET "/ingredients/4" for ::1 at 2020-05-20 16:57:47 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mIngredient Load (0.5ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:44:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:6
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 6.9ms | Allocations: 1961)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 21.1ms | ActiveRecord: 1.2ms | Allocations: 6809)
+
+
+Started GET "/ingredients/4" for ::1 at 2020-05-20 16:59:12 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:44:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:8
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 5.7ms | Allocations: 2157)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 19.0ms | ActiveRecord: 0.7ms | Allocations: 7931)
+
+
+Started GET "/ingredients/4" for ::1 at 2020-05-20 17:01:46 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:44:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:8
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 2152)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 22ms (Views: 16.8ms | ActiveRecord: 0.7ms | Allocations: 7923)
+
+
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:01:53 -0400
+Processing by IngredientsController#index as HTML
+  Rendering ingredients/index.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/ingredients/index.html.erb:5:in `sort_by'
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 5.5ms | Allocations: 2282)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.2ms | Allocations: 2927)
+
+
+  
+ActionView::Template::Error (undefined method `users' for nil:NilClass):
+    2: <ul>
+    3: 
+    4: 
+    5: <% @ingredients.sort_by {|a,b| a.users <=> b.users}.each do |i| %>
+    6:     <li><%= link_to i.name, ingredient_path(i) %></li>
+    7: <% end %>
+    8: </ul>
+  
+app/views/ingredients/index.html.erb:5
+app/views/ingredients/index.html.erb:5:in `sort_by'
+app/views/ingredients/index.html.erb:5
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:02:22 -0400
+Processing by IngredientsController#index as HTML
+  Rendering ingredients/index.html.erb within layouts/application
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/ingredients/index.html.erb:5:in `sort_by'
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 16.0ms | Allocations: 3933)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 0.3ms | Allocations: 5180)
+
+
+  
+ActionView::Template::Error (undefined method `user' for #<Ingredient:0x00007feb21fc9248>
+Did you mean?  users):
+    2: <ul>
+    3: 
+    4: 
+    5: <% @ingredients.sort_by {|a,b| a.user <=> b.user}.each do |i| %>
+    6:     <li><%= link_to i.name, ingredient_path(i) %></li>
+    7: <% end %>
+    8: </ul>
+  
+app/views/ingredients/index.html.erb:5
+app/views/ingredients/index.html.erb:5:in `sort_by'
+app/views/ingredients/index.html.erb:5
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:02:38 -0400
+Processing by IngredientsController#index as HTML
+  Rendering ingredients/index.html.erb within layouts/application
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/ingredients/index.html.erb:5:in `sort_by'
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 2278)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.4ms | Allocations: 3525)
+
+
+  
+ActionView::Template::Error (undefined method `users' for nil:NilClass):
+    2: <ul>
+    3: 
+    4: 
+    5: <% @ingredients.sort_by {|a, b| a.users <=> b.users}.each do |i| %>
+    6:     <li><%= link_to i.name, ingredient_path(i) %></li>
+    7: <% end %>
+    8: </ul>
+  
+app/views/ingredients/index.html.erb:5
+app/views/ingredients/index.html.erb:5:in `sort_by'
+app/views/ingredients/index.html.erb:5
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:04:19 -0400
+Processing by IngredientsController#index as HTML
+  Rendering ingredients/index.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/ingredients/index.html.erb:5:in `sort_by'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/views/ingredients/index.html.erb:5
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 6.5ms | Allocations: 3187)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.4ms | Allocations: 4434)
+
+
+  
+ActionView::Template::Error (undefined method `users' for nil:NilClass):
+    2: <ul>
+    3: 
+    4: 
+    5: <% @ingredients.sort_by {|a, b| a.users.count <=> b.users.count}.each do |i| %>
+    6:     <li><%= link_to i.name, ingredient_path(i) %></li>
+    7: <% end %>
+    8: </ul>
+  
+app/views/ingredients/index.html.erb:5
+app/views/ingredients/index.html.erb:5:in `sort_by'
+app/views/ingredients/index.html.erb:5
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:04:33 -0400
+Processing by IngredientsController#index as HTML
+  Rendering ingredients/index.html.erb within layouts/application
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/ingredients/index.html.erb:5
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1014)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 25.2ms | ActiveRecord: 0.3ms | Allocations: 6247)
+
+
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:05:30 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/controllers/ingredients_controller.rb:7:in `sort_by'
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+Completed 500 Internal Server Error in 43ms (ActiveRecord: 3.7ms | Allocations: 12541)
+
+
+  
+NoMethodError (undefined method `users' for nil:NilClass):
+  
+app/controllers/ingredients_controller.rb:7:in `block in index'
+app/controllers/ingredients_controller.rb:7:in `sort_by'
+app/controllers/ingredients_controller.rb:7:in `index'
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:06:02 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+Completed 500 Internal Server Error in 34974ms (ActiveRecord: 1.8ms | Allocations: 82759)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `index'
+app/controllers/ingredients_controller.rb:8:in `index'
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:06:45 -0400
+Processing by IngredientsController#index as HTML
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.0ms | Allocations: 101352)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `index'
+app/controllers/ingredients_controller.rb:8:in `index'
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:06:58 -0400
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.6ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 1], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:08:42 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (0.8ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 4], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ (byebug):1:in `index'
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ (byebug):1:in `index'
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ (byebug):1:in `sort_by'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ (byebug):1:in `block in index'
+  [1m[36mCACHE Ingredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ (byebug):1:in `index'
+  [1m[36mCACHE Ingredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ (byebug):1:in `index'
+  [1m[36mIngredient Load (0.6ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 1], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ (byebug):1:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 1], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 2], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 3], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 4], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 5], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["ingredient_id", 6], ["LIMIT", 11]]
+  ↳ app/controllers/ingredients_controller.rb:8:in `index'
+  [1m[36mCACHE Ingredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ (byebug):1:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mCACHE Ingredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mCACHE Ingredient Load (0.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" ORDER BY "ingredients"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+Completed 500 Internal Server Error in 532977ms (ActiveRecord: 6.3ms | Allocations: 479879)
+
+
+Started GET "/ingredients/" for ::1 at 2020-05-20 17:17:35 -0400
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/users" for ::1 at 2020-05-20 17:17:35 -0400
+  [1m[35m (71.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by IngredientsController#index as HTML
+Completed 500 Internal Server Error in 2842ms (ActiveRecord: 0.0ms | Allocations: 465986)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `index'
+app/controllers/ingredients_controller.rb:8:in `index'
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `index'
+app/controllers/ingredients_controller.rb:8:in `index'
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/index.html.erb within layouts/application (Duration: 1419.1ms | Allocations: 4762295)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 11503ms (Views: 11353.1ms | ActiveRecord: 2.1ms | Allocations: 44657813)
+
+
+Started GET "/ingredients" for ::1 at 2020-05-20 17:17:58 -0400
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (22.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/controllers/ingredients_controller.rb:9:in `sort_by'
+  [1m[36mUser Load (5.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/controllers/ingredients_controller.rb:9:in `block in index'
+Completed 500 Internal Server Error in 1815ms (ActiveRecord: 86.1ms | Allocations: 5387643)
+
+
+  
+NoMethodError (undefined method `users' for nil:NilClass):
+  
+app/controllers/ingredients_controller.rb:9:in `block in index'
+app/controllers/ingredients_controller.rb:9:in `sort_by'
+app/controllers/ingredients_controller.rb:9:in `index'
+Started GET "/ingredients" for ::1 at 2020-05-20 17:19:51 -0400
+  [1m[35m (10.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (7.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/controllers/ingredients_controller.rb:10:in `sort'
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/controllers/ingredients_controller.rb:10:in `block in index'
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 2]]
+  ↳ app/controllers/ingredients_controller.rb:10:in `block in index'
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 3]]
+  ↳ app/controllers/ingredients_controller.rb:10:in `block in index'
+  [1m[36mUser Load (7.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/controllers/ingredients_controller.rb:10:in `block in index'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 5]]
+  ↳ app/controllers/ingredients_controller.rb:10:in `block in index'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 6]]
+  ↳ app/controllers/ingredients_controller.rb:10:in `block in index'
+  Rendering ingredients/index.html.erb within layouts/application
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 32.8ms | Allocations: 226653)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 1734ms (Views: 405.6ms | ActiveRecord: 85.6ms | Allocations: 8138831)
+
+
+Started GET "/ingredients" for ::1 at 2020-05-20 17:20:41 -0400
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (5.9ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/controllers/ingredients_controller.rb:7:in `sort'
+  [1m[36mUser Load (8.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 2]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 3]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 5]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 6]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  Rendering ingredients/index.html.erb within layouts/application
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 39.8ms | Allocations: 198098)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 2315ms (Views: 376.1ms | ActiveRecord: 85.9ms | Allocations: 8050866)
+
+
+Started GET "/ingredients/1" for ::1 at 2020-05-20 17:20:53 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIngredient Load (6.8ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:45:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (4.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/views/ingredients/show.html.erb:8
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 579.6ms | Allocations: 3219896)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 950ms (Views: 840.4ms | ActiveRecord: 31.4ms | Allocations: 4734575)
+
+
+Started GET "/ingredients/4" for ::1 at 2020-05-20 17:20:58 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mIngredient Load (1.8ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:45:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (1.5ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/views/ingredients/show.html.erb:8
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 134.0ms | Allocations: 872630)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 539ms (Views: 457.4ms | ActiveRecord: 4.9ms | Allocations: 2259698)
+
+
+Started GET "/ingredients" for ::1 at 2020-05-20 17:21:12 -0400
+  [1m[35m (7.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/ingredients" for ::1 at 2020-05-20 17:21:16 -0400
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (5.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/controllers/ingredients_controller.rb:7:in `sort'
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 2]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 3]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 5]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 6]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  Rendering ingredients/index.html.erb within layouts/application
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 30.1ms | Allocations: 198098)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 2026ms (Views: 275.5ms | ActiveRecord: 102.7ms | Allocations: 8053320)
+
+
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by IngredientsController#index as HTML
+  [1m[36mIngredient Load (2.0ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/controllers/ingredients_controller.rb:7:in `sort'
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 2]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 3]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 5]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 6]]
+  ↳ app/controllers/ingredients_controller.rb:7:in `block in index'
+  Rendering ingredients/index.html.erb within layouts/application
+  Rendered ingredients/index.html.erb within layouts/application (Duration: 40.0ms | Allocations: 198098)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 1414ms (Views: 357.4ms | ActiveRecord: 68.4ms | Allocations: 8038505)
+
+
+Started GET "/ingredients/3" for ::1 at 2020-05-20 17:21:27 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mIngredient Load (2.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:45:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 3]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (9.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 3]]
+  ↳ app/views/ingredients/show.html.erb:8
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 368.6ms | Allocations: 2576005)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 837ms (Views: 706.4ms | ActiveRecord: 38.9ms | Allocations: 4057005)
+
+
+Started GET "/ingredients/1" for ::1 at 2020-05-20 17:21:31 -0400
+Processing by IngredientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mIngredient Load (6.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/ingredients_controller.rb:45:in `ingredient_instance'
+  Rendering ingredients/show.html.erb within layouts/application
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "user_ingredients" ON "users"."id" = "user_ingredients"."user_id" WHERE "user_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/views/ingredients/show.html.erb:3
+  [1m[36mRecipe Load (1.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" INNER JOIN "recipe_ingredients" ON "recipes"."id" = "recipe_ingredients"."recipe_id" WHERE "recipe_ingredients"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/views/ingredients/show.html.erb:8
+  Rendered ingredients/show.html.erb within layouts/application (Duration: 210.2ms | Allocations: 1443166)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 512ms (Views: 448.6ms | ActiveRecord: 9.5ms | Allocations: 2833046)
+
+
+Started GET "/recipes" for ::1 at 2020-05-20 17:23:31 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RecipesController#index as HTML
+  [1m[36mRecipe Load (7.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:6:in `sort'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (15.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (7.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (7.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  Rendering recipes/index.html.erb within layouts/application
+  Rendered recipes/index.html.erb within layouts/application (Duration: 48.6ms | Allocations: 226149)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 2352ms (Views: 345.4ms | ActiveRecord: 114.7ms | Allocations: 8967703)
+
+
+Started GET "/recipes/new" for ::1 at 2020-05-20 17:23:43 -0400
+Processing by RecipesController#new as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/recipes/_recipe_form.html.erb:4
+  [1m[36mIngredient Load (6.6ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients"[0m
+  ↳ app/views/recipes/_recipe_form.html.erb:5
+  Rendered recipes/_recipe_form.html.erb (Duration: 689.5ms | Allocations: 3888201)
+  Rendered recipes/new.html.erb within layouts/application (Duration: 724.9ms | Allocations: 3990157)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 1247ms (Views: 1184.6ms | ActiveRecord: 21.5ms | Allocations: 5231775)
+
+
+Started POST "/recipes" for ::1 at 2020-05-20 17:23:57 -0400
+Processing by RecipesController#create as HTML
+  Parameters: {"authenticity_token"=>"gLx5lCMO0qs2biiSbhR8TDq6ZUt5LmJowomKuYxBxzqYI4sH9An3Ua0JLG9yIGkyxKuBS0DtP9aPH2uQLtRqoQ==", "recipe"=>{"name"=>"chowder", "user_id"=>"5", "ingredient_ids"=>["", "1", "3", "5"]}, "commit"=>"Create Recipe"}
+[31mUnpermitted parameter: :ingredient_ids[0m
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:20:in `create'
+  [1m[36mRecipe Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "chowder"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:20:in `create'
+  [1m[36mCACHE Recipe Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "recipes" WHERE "recipes"."name" = ? LIMIT ?[0m  [["name", "chowder"], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[35m (1.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[36mRecipe Create (14.8ms)[0m  [1m[32mINSERT INTO "recipes" ("name", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "chowder"], ["user_id", 5], ["created_at", "2020-05-20 21:23:57.885004"], ["updated_at", "2020-05-20 21:23:57.885004"]]
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:21:in `create'
+  [1m[36mRecipeIngredient Load (5.1ms)[0m  [1m[34mSELECT "recipe_ingredients".* FROM "recipe_ingredients" WHERE "recipe_ingredients"."recipe_id" = ? AND "recipe_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["recipe_id", 7], ["ingredient_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (2.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipe Load (6.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mIngredient Load (4.5ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipeIngredient Create (6.8ms)[0m  [1m[32mINSERT INTO "recipe_ingredients" ("recipe_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["recipe_id", 7], ["ingredient_id", 1], ["created_at", "2020-05-20 21:23:59.732647"], ["updated_at", "2020-05-20 21:23:59.732647"]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipeIngredient Load (8.5ms)[0m  [1m[34mSELECT "recipe_ingredients".* FROM "recipe_ingredients" WHERE "recipe_ingredients"."recipe_id" = ? AND "recipe_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["recipe_id", 7], ["ingredient_id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (2.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipe Load (3.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mIngredient Load (2.8ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipeIngredient Create (32.6ms)[0m  [1m[32mINSERT INTO "recipe_ingredients" ("recipe_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["recipe_id", 7], ["ingredient_id", 3], ["created_at", "2020-05-20 21:24:00.757570"], ["updated_at", "2020-05-20 21:24:00.757570"]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (7.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipeIngredient Load (4.1ms)[0m  [1m[34mSELECT "recipe_ingredients".* FROM "recipe_ingredients" WHERE "recipe_ingredients"."recipe_id" = ? AND "recipe_ingredients"."ingredient_id" = ? LIMIT ?[0m  [["recipe_id", 7], ["ingredient_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (2.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipe Load (19.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mIngredient Load (17.9ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[36mRecipeIngredient Create (14.3ms)[0m  [1m[32mINSERT INTO "recipe_ingredients" ("recipe_id", "ingredient_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["recipe_id", 7], ["ingredient_id", 5], ["created_at", "2020-05-20 21:24:01.973631"], ["updated_at", "2020-05-20 21:24:01.973631"]]
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+  [1m[35m (8.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:24:in `block in create'
+Redirected to http://localhost:3000/recipes/7
+Completed 302 Found in 4929ms (ActiveRecord: 223.3ms | Allocations: 12859544)
+
+
+Started GET "/recipes/7" for ::1 at 2020-05-20 17:24:02 -0400
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mRecipe Load (9.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:54:in `recipe_instance'
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mUser Load (7.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:3
+  [1m[36mIngredient Load (16.7ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/views/recipes/show.html.erb:6
+  Rendered recipes/show.html.erb within layouts/application (Duration: 535.5ms | Allocations: 1713828)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 1661ms (Views: 1324.1ms | ActiveRecord: 33.6ms | Allocations: 4691961)
+
+
+Started GET "/recipes/" for ::1 at 2020-05-20 17:24:10 -0400
+Processing by RecipesController#index as HTML
+  [1m[36mRecipe Load (7.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:6:in `sort'
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (6.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (9.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (8.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  Rendering recipes/index.html.erb within layouts/application
+  Rendered recipes/index.html.erb within layouts/application (Duration: 45.2ms | Allocations: 224497)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 1343ms (Views: 342.7ms | ActiveRecord: 47.1ms | Allocations: 6107191)
+
+
+Started GET "/recipes/" for ::1 at 2020-05-20 17:24:24 -0400
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RecipesController#index as HTML
+  [1m[36mRecipe Load (2.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:6:in `sort'
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (8.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (6.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (11.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (6.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (7.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  Rendering recipes/index.html.erb within layouts/application
+  Rendered recipes/index.html.erb within layouts/application (Duration: 40.3ms | Allocations: 224501)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 2888ms (Views: 326.0ms | ActiveRecord: 135.8ms | Allocations: 16796409)
+
+
+Started GET "/recipes/" for ::1 at 2020-05-20 17:25:48 -0400
+Processing by RecipesController#index as HTML
+  [1m[36mRecipe Load (4.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:6:in `sort'
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (21.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  Rendering recipes/index.html.erb within layouts/application
+  Rendered recipes/index.html.erb within layouts/application (Duration: 2967.3ms | Allocations: 18058062)
+Completed 500 Internal Server Error in 4833ms (ActiveRecord: 62.1ms | Allocations: 30440995)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `i' for #<#<Class:0x00007fa4e294c2b0>:0x00007fa4def84a00>
+Did you mean?  @@id):
+    1: <h1> Recipes </h1>
+    2: <ul>
+    3: <% @recipes.each do |r| %>
+    4:     <li><%= link_to r.name, recipe_path(r) %>Ingredients: <%=i.ingredients.count %></li>
+    5: <% end %>
+    6: </ul>
+    7: 
+  
+app/views/recipes/index.html.erb:4
+app/views/recipes/index.html.erb:3:in `each'
+app/views/recipes/index.html.erb:3
+Started GET "/recipes/" for ::1 at 2020-05-20 17:25:58 -0400
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by RecipesController#index as HTML
+  [1m[36mRecipe Load (2.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:6:in `sort'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (11.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (5.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (6.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (7.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (5.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/index.html.erb:4
+  Rendered recipes/index.html.erb within layouts/application (Duration: 475.3ms | Allocations: 2510122)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 12015ms (Views: 950.4ms | ActiveRecord: 71.3ms | Allocations: 76663511)
+
+
+Started GET "/recipes/" for ::1 at 2020-05-20 17:26:23 -0400
+Processing by RecipesController#index as HTML
+  [1m[36mRecipe Load (1.9ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/controllers/recipes_controller.rb:6:in `sort'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (13.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (5.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (5.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/controllers/recipes_controller.rb:6:in `block in index'
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 7]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (7.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 6]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/index.html.erb:4
+  [1m[35mCACHE  (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "ingredients" INNER JOIN "recipe_ingredients" ON "ingredients"."id" = "recipe_ingredients"."ingredient_id" WHERE "recipe_ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/index.html.erb:4
+  Rendered recipes/index.html.erb within layouts/application (Duration: 414.0ms | Allocations: 2366506)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 3236ms (Views: 782.9ms | ActiveRecord: 66.4ms | Allocations: 15635342)
+
+

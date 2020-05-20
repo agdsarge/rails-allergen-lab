@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        
+
     end
 
     def new
@@ -25,10 +25,10 @@ class UsersController < ApplicationController
                 end
             end
             redirect_to user_path(@user)
-        else 
+        else
             render :new
         end
-        
+
     end
 
     def edit
@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 
     def update
         @user.update(user_params(:name))
+        UserIngredient.where("user_id = ?", params[:id]).destroy_all
         params[:user][:ingredient_ids].each do |ing|
             if !ing.empty?
                 UserIngredient.find_or_create_by(user_id: @user.id, ingredient_id: ing)

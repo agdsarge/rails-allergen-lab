@@ -2,7 +2,12 @@
 <%= f.label :name %>
 <%= f.text_field :name %>
 <%= f.collection_select :user_id, User.all, :id, :name, {prompt: "Choose a user"}%>
-
+<%= f.collection_check_boxes(:ingredient_ids, Ingredient.all, :id, :name) do |b| %>
+    <span>
+        <%= b.check_box %>
+        <%= b.label %>
+    </span>
+<% end %>
 <%= f.submit %>
 
 <% end %>

@@ -1,0 +1,8 @@
+<h2> Recipe show page </h2>
+
+<%= "#{@recipe.name.capitalize} was added to the app by #{@recipe.user.name}" %>
+
+<h4> Here are the ingredients. </h4>
+<% @recipe.ingredients.each do |ing| %>
+    <%= ing.name %>
+<% end %>
